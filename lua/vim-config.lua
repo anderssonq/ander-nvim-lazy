@@ -34,7 +34,7 @@ end)
 
 vim.keymap.set('n', '<C-Y>', function()
   vim.cmd('write')
-  vim.notify("File saved 💾, remember Easy To Change (ETC) principle!! 📚", vim.log.levels.INFO)
+  vim.notify("File saved 💾, Remember to apply the Easy To Change (ETC) principle!! 📚", vim.log.levels.INFO)
 end)
 
 vim.keymap.set('v', '<leader>zf', ":'<,'>fold<CR>", { desc = "Fold Selected Lines" })
@@ -51,3 +51,18 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = "Toggle Comment Line" })
 vim.api.nvim_set_keymap('n', '<C-Up>', ':resize +2<CR>', { noremap = true, silent = true })
 
+-- Function to increase the width of the current split by 20%
+function IncreaseWidth()
+  vim.cmd("vertical resize -20%")
+end
+
+-- Function to decrease the width of the current split by 20%
+function DecreaseWidth()
+  vim.cmd("vertical resize +20%")
+end
+
+-- Map <C-Left> to decrease the width by 20%
+vim.api.nvim_set_keymap('n', '<C-,>', ':lua DecreaseWidth()<CR>', { noremap = true, silent = true })
+
+-- Map <C-Right> to increase the width by 20%
+vim.api.nvim_set_keymap('n', '<C-.>', ':lua IncreaseWidth()<CR>', { noremap = true, silent = true })
